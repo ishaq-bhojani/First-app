@@ -1,0 +1,39 @@
+<div>
+    <div class="panel panel-info">
+        <div class="panel panel-heading">
+            <div class="panel-title">Previous Task</div>
+        </div>
+        <div class="panel-body" ng-repeat="task in user.stdData[giveTaskToThis].tasks">
+            <div>Status: {{task.status}} Ratings:
+                <select ng-model="task.ratings" ng-change="getRatings()">
+                    <option value="0">Zero</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                    <option value="4">Four</option>
+                    <option value="5">Five</option>
+                </select>
+            </div>
+            <div>Task No {{$index+1}}:{{task.data}}</div>
+            <div class="form-group">
+                <div ng-repeat="comment in task.comments">{{comment.commentor}}: {{comment.data}}</div>
+            </div>
+            <div class="form-group">
+                <div class="input-append">
+                    <input type="text" class="form-control" placeholder="Comment" ng-model="com">
+                    <button class="btn btn-info" ng-click="commentOnTask($index,com)">Comment</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="panel panel-info">
+        <div class="panel panel-heading">
+            <div class="panel-title">Give New Task</div>
+        </div>
+        <div class="panel-body">
+            <textarea class="form-control" rows="3" ng-model="taskData"></textarea>
+            <button class="btn btn-success btn-block" ng-click="giveTask12(taskData)">Give Task</button>
+        </div>
+    </div>
+</div>

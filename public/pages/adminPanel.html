@@ -1,0 +1,126 @@
+<div class="panel panel-info">
+    <div class="panel panel-heading">
+        <div class="panel-title">Welcome {{adminName}}</div>
+    </div>
+    <div class="panel panel-body">
+       <button class="btn btn-primary btn-lg btn-block" ng-click="addStudentShowCard()">Add Students</button>
+        <div style="display:none;" id="addStdForm">
+                <div class="panel panel-info">
+                    <div class="panel panel-heading">
+                        <div class="panel-title">Add Student</div>
+                    </div>
+                    <div class="panel-body">
+                        <form role="form">
+                            <div class="form-group">
+                                <label>User Name
+                                    <input type="text" class="form-control" placeholder="User Name" ng-model="std.userName">
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label>Password
+                                    <input type="password" class="form-control" placeholder="Password" ng-model="std.password">
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label>First Name
+                                    <input type="text" class="form-control" placeholder="First Name"  ng-model="std.fName">
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name
+                                    <input type="text" class="form-control" placeholder="Last Name" ng-model="std.lName">
+                                </label>
+                            </div>
+                            <select class="form-control" ng-model="std.subClass">
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                                <option value="4">Four</option>
+                                <option value="5">Five</option>
+                            </select>
+                            <button class="btn btn-success" ng-disabled="!std.userName ||!std.password ||!std.fName||!std.lName" ng-click="addStd(std)">Add</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+       <button style="margin-top:7px" class="btn btn-primary btn-lg btn-block" ng-click="switchClass()">Switch Student Class</button>
+        <div style="display:none;" id="switch">
+
+            <table class="table table-responsive table-bordered">
+                    <tr>
+                        <td>User Name</td>
+                        <td>First Name</td>
+                        <td>Class</td>
+                    </tr>
+                    <tr ng-repeat="student in stdData">
+                        <td>{{student.user}}</td>
+                        <td>{{student.name}}</td>
+                        <td>
+
+                            <select ng-model="student.class" ng-change="saveClassChanged($index)">
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                                <option value="4">Four</option>
+                                <option value="5">Five</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+        </div>
+
+       <button style="margin-top:7px" class="btn btn-primary btn-lg btn-block" ng-click="checkStdListShow()">Check Students List</button>
+        <div style="display:none;" id="checkList">
+            <div class="panel panel-info">
+                <div class="panel panel-heading">
+                    <div class="panel-title">Students List</div>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-bordered table-responsive">
+                        <tr>
+                            <td>User Name</td>
+                            <td>Password</td>
+                            <td>First Name</td>
+                            <td>Last Name</td>
+                            <td>Class</td>
+                        </tr>
+                    <tr ng-repeat="student in stdData">
+                        <td>{{student.user}}</td>
+                        <td>{{student.password}}</td>
+                        <td>{{student.name}}</td>
+                        <td>{{student.lName}}</td>
+                        <td>{{student.class}}</td>
+
+                    </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <button style="margin-top:7px" class="btn btn-primary btn-lg btn-block" ng-click="checkStdList()">Give Task</button>
+        <div style="display:none;" id="giveTask">
+            <div class="panel panel-info">
+                <div class="panel panel-heading">
+                    <div class="panel-title">Give Task</div>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-bordered table-responsive">
+                        <tr>
+                            <td>User Name</td>
+                            <td>First Name</td>
+                            <td>Class</td>
+                            <td>Give Task</td>
+                        </tr>
+                        <tr ng-repeat="student in stdData">
+                            <td>{{student.user}}</td>
+                            <td>{{student.name}}</td>
+                            <td>{{student.class}}</td>
+                            <td><button class="btn btn-success btn-block" ng-click="giveTask($index)">Give Task</button></td>
+
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<button class="btn btn-info" ng-click="logout()">Logout</button>
